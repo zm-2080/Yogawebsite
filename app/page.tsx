@@ -218,45 +218,40 @@ export default function Home() {
           </svg>
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
 
-        <motion.section {...fadeUp} id="services" className="space-y-16">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/60 font-medium">
-                Holistic modalities
-              </p>
-              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42] md:text-5xl">
-                Experiences curated like a quiet, restorative menu.
-              </h2>
-            </div>
-            <Link
-              href="#contact"
-              className="border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60"
-            >
-              Download offerings
-            </Link>
+        <motion.section {...fadeUp} id="services" className="space-y-20">
+          <div className="flex flex-col items-center gap-6 text-center">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50 font-medium">
+              Holistic modalities
+            </p>
+            <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42] md:text-5xl max-w-2xl">
+              Experiences curated like a quiet, restorative menu.
+            </h2>
           </div>
-          <div className="grid gap-12 md:grid-cols-3">
+          <div className="flex flex-col">
             {modalities.map((item, index) => (
-              <Card
+              <div
                 key={item.title}
-                className={`group border-0 bg-[#E5E0D5]/70 p-12 transition-all duration-[800ms] ease-out hover:bg-[#F9F7F2] ${
-                  index === 0
-                    ? "md:col-span-2"
-                    : index === 3
-                      ? "md:col-span-2"
-                      : "md:col-span-1"
+                className={`group grid gap-6 py-12 md:grid-cols-[1fr_1.5fr] md:gap-12 ${
+                  index > 0 ? "border-t border-[#E5E0D5]" : ""
                 }`}
               >
-                <CardHeader>
-                  <CardTitle className="font-serif text-2xl font-light tracking-[0.05em] text-[#1A2B42] transition-colors duration-[800ms] ease-out group-hover:text-[#9B8B79]">
-                    {item.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm font-light text-[#2D2D2D]/70 transition-colors duration-[800ms] ease-out group-hover:text-[#1A2B42]">
+                <h3 className="font-serif text-2xl font-light tracking-[0.05em] text-[#1A2B42] transition-colors duration-[800ms] ease-out group-hover:text-[#9B8B79]">
+                  {item.title}
+                </h3>
+                <p className="text-sm font-light leading-relaxed text-[#2D2D2D]/70 text-justify transition-colors duration-[800ms] ease-out group-hover:text-[#1A2B42]">
                   {item.body}
-                </CardContent>
-              </Card>
+                </p>
+              </div>
             ))}
+          </div>
+          <div className="flex justify-center">
+            <Link
+              href="#contact"
+              className="group relative pb-2 text-xs uppercase tracking-[0.2em] text-[#1A2B42] transition-colors duration-[800ms] ease-out hover:text-[#9B8B79]"
+            >
+              Download offerings
+              <span className="absolute bottom-0 left-0 h-px w-full bg-[#1A2B42]/70 transition-all duration-[800ms] ease-out group-hover:bg-[#9B8B79]" />
+            </Link>
           </div>
         </motion.section>
 
