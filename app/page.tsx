@@ -193,6 +193,23 @@ export default function Home() {
         </section>
 
         <div className="grain-layer relative">
+          <svg
+            className="grain-overlay"
+            aria-hidden="true"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+          >
+            <filter id="grain-texture">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.9"
+                numOctaves="3"
+                stitchTiles="stitch"
+              />
+              <feColorMatrix type="saturate" values="0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#grain-texture)" />
+          </svg>
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
 
         <motion.section {...fadeUp} id="services" className="space-y-16">
