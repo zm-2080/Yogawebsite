@@ -58,6 +58,8 @@ const offerings = [
     body:
       "Group experiences designed for teams, retreats, and community gatherings. Build presence, cohesion, and shared energy.",
     cta: "View classes",
+    image:
+      "https://images.unsplash.com/photo-1524863479829-916d8e77f114?q=80&w=2400&auto=format&fit=crop",
   },
   {
     title: "Private 1:1 Sessions",
@@ -65,6 +67,8 @@ const offerings = [
     body:
       "A tailored experience that blends energy work, meditation, and sound therapy to help you reset and move forward.",
     cta: "Book a session",
+    image:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2400&auto=format&fit=crop",
   },
   {
     title: "Corporate & Retreat Partnerships",
@@ -72,6 +76,8 @@ const offerings = [
     body:
       "High-impact facilitation for corporate teams and retreat hosts. Programs designed for focus, resilience, and team alignment.",
     cta: "Request a proposal",
+    image:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop",
   },
 ];
 
@@ -315,6 +321,14 @@ export default function Home() {
             <div className="grid gap-12 md:grid-cols-3">
               {offerings.map((item) => (
                 <div key={item.title} className="flex h-full flex-col gap-6 text-left">
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-[#F9F7F2]">
+                    <div
+                      className="h-full w-full bg-cover bg-center filter saturate-90 sepia-[0.12] transition-transform duration-[800ms] ease-out hover:scale-[1.02]"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    >
+                      <div className="h-full w-full bg-black/10" />
+                    </div>
+                  </div>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50">
                     {item.subtitle}
                   </p>
