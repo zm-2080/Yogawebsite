@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -109,29 +110,59 @@ const credentials = [
 ];
 
 export default function Home() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Switch to dark header when scrolled past 80% of viewport height (past hero)
+      setIsScrolled(window.scrollY > window.innerHeight * 0.8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-[#F9F7F2] text-[#2D2D2D]">
       <header
-        className="fixed top-0 z-50 w-full border-b border-transparent bg-transparent"
+        className={`fixed top-0 z-50 w-full transition-all duration-[800ms] ease-out ${
+          isScrolled
+            ? "border-b border-[#E5E0D5] bg-[#F9F7F2]/95 backdrop-blur-sm"
+            : "border-b border-transparent bg-transparent"
+        }`}
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <div
-              className="flex h-10 w-10 items-center justify-center rounded-[2px] border border-[#F9F7F2] text-[#F9F7F2]"
+              className={`flex h-10 w-10 items-center justify-center rounded-[2px] border transition-colors duration-[800ms] ease-out ${
+                isScrolled
+                  ? "border-[#1A2B42] text-[#1A2B42]"
+                  : "border-[#F9F7F2] text-[#F9F7F2]"
+              }`}
             >
               SS
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-[0.15em] text-[#E5E0D5]">
+              <p
+                className={`text-[10px] uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out ${
+                  isScrolled ? "text-[#9B8B79]" : "text-[#E5E0D5]"
+                }`}
+              >
                 Soul Sound
               </p>
-              <p className="text-sm font-light text-[#F9F7F2]">
+              <p
+                className={`text-sm font-light transition-colors duration-[800ms] ease-out ${
+                  isScrolled ? "text-[#1A2B42]" : "text-[#F9F7F2]"
+                }`}
+              >
                 Celine Mathis
               </p>
             </div>
           </div>
           <nav
-            className="hidden items-center gap-6 text-[11px] font-light uppercase tracking-[0.15em] text-[#F9F7F2] md:flex"
+            className={`hidden items-center gap-6 text-[11px] font-light uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out md:flex ${
+              isScrolled ? "text-[#1A2B42]" : "text-[#F9F7F2]"
+            }`}
           >
             <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#services">
               Services
@@ -148,10 +179,16 @@ export default function Home() {
           </nav>
           <Link
             href="#contact"
-            className="relative pb-1 text-[11px] font-light uppercase tracking-[0.15em] text-[#F9F7F2] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+            className={`relative pb-1 text-[11px] font-light uppercase tracking-[0.15em] transition-all duration-[800ms] ease-out hover:opacity-60 ${
+              isScrolled ? "text-[#1A2B42]" : "text-[#F9F7F2]"
+            }`}
           >
             Book a session
-            <span className="absolute bottom-0 left-0 h-px w-full bg-[#F9F7F2]" />
+            <span
+              className={`absolute bottom-0 left-0 h-px w-full transition-colors duration-[800ms] ease-out ${
+                isScrolled ? "bg-[#1A2B42]" : "bg-[#F9F7F2]"
+              }`}
+            />
           </Link>
         </div>
       </header>
