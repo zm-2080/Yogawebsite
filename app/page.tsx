@@ -192,7 +192,8 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
+        <div className="grain-layer relative">
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
 
         <motion.section {...fadeUp} id="services" className="space-y-16">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -404,6 +405,7 @@ export default function Home() {
             </CardContent>
           </Card>
         </motion.section>
+          </div>
         </div>
       </main>
 
