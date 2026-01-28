@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -104,56 +103,29 @@ const credentials = [
 ];
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 24);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="relative min-h-screen bg-[#F9F7F2] text-[#2D2D2D]">
       <header
-        className={`fixed top-0 z-50 w-full transition-all duration-[800ms] ease-out ${
-          isScrolled
-            ? "border-b border-[#E5E0D5] bg-[#F9F7F2]/95"
-            : "border-b border-transparent bg-transparent"
-        }`}
+        className="fixed top-0 z-50 w-full border-b border-transparent bg-transparent"
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <div
-              className={`flex h-10 w-10 items-center justify-center rounded-[2px] border transition-colors duration-[800ms] ease-out ${
-                isScrolled
-                  ? "border-[#1A2B42] text-[#1A2B42]"
-                  : "border-[#F9F7F2] text-[#F9F7F2]"
-              }`}
+              className="flex h-10 w-10 items-center justify-center rounded-[2px] border border-[#F9F7F2] text-[#F9F7F2]"
             >
               SS
             </div>
             <div>
-              <p
-                className={`text-[10px] uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out ${
-                  isScrolled ? "text-[#9B8B79]" : "text-[#E5E0D5]"
-                }`}
-              >
+              <p className="text-[10px] uppercase tracking-[0.15em] text-[#E5E0D5]">
                 Soul Sound
               </p>
-              <p
-                className={`text-sm font-medium transition-colors duration-[800ms] ease-out ${
-                  isScrolled ? "text-[#1A2B42]" : "text-[#F9F7F2]"
-                }`}
-              >
+              <p className="text-sm font-light text-[#F9F7F2]">
                 Celine Mathis
               </p>
             </div>
           </div>
           <nav
-            className={`hidden items-center gap-6 text-[11px] font-medium uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out md:flex ${
-              isScrolled ? "text-[#2D2D2D]" : "text-[#F9F7F2]"
-            }`}
+            className="hidden items-center gap-6 text-[11px] font-light uppercase tracking-[0.15em] text-[#F9F7F2] md:flex"
           >
             <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#services">
               Services
@@ -168,17 +140,13 @@ export default function Home() {
               Contact
             </Link>
           </nav>
-          <Button
-            asChild
-            variant="outline"
-            className={`rounded-[2px] border transition-all duration-[800ms] ease-out ${
-              isScrolled
-                ? "border-[#9B8B79] text-[#9B8B79] hover:bg-[#9B8B79]/10"
-                : "border-[#F9F7F2] text-[#F9F7F2] hover:bg-white/10"
-            }`}
+          <Link
+            href="#contact"
+            className="relative pb-1 text-[11px] font-light uppercase tracking-[0.15em] text-[#F9F7F2] transition-opacity duration-[800ms] ease-out hover:opacity-60"
           >
-            <Link href="#contact">Book here</Link>
-          </Button>
+            Book a session
+            <span className="absolute bottom-0 left-0 h-px w-full bg-[#F9F7F2]" />
+          </Link>
         </div>
       </header>
 
@@ -191,17 +159,17 @@ export default function Home() {
                 "url(https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2400&auto=format&fit=crop)",
             }}
           >
-            <div className="absolute inset-0 bg-[#1A2B42]/65 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
           </div>
           <motion.div
             {...fadeUp}
-            className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-24 pt-40 text-[#F9F7F2] lg:flex-row lg:items-end lg:justify-between"
+            className="relative z-10 mx-auto flex min-h-[100vh] w-full max-w-6xl flex-col justify-center gap-12 px-6 pb-24 pt-40 text-[#F9F7F2]"
           >
-            <div className="max-w-2xl space-y-6">
-              <p className="text-[11px] uppercase tracking-[0.15em] text-[#E5E0D5]">
+            <div className="max-w-xl space-y-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-[#E5E0D5]">
                 Architectural Serenity
               </p>
-              <h1 className="font-serif text-5xl leading-tight tracking-[0.05em] md:text-6xl">
+              <h1 className="font-serif text-5xl font-light leading-tight tracking-[0.02em] md:text-6xl">
                 Your practice is a sanctuary of stillness, resonance, and
                 unfolding.
               </h1>
@@ -209,52 +177,19 @@ export default function Home() {
                 I guide you into the architecture of the body through sound,
                 movement, and breath so you can return to clarity and presence.
               </p>
-              <div className="flex flex-wrap gap-6 text-sm font-light">
-                <Link
-                  href="#contact"
-                  className="border-b border-[#F9F7F2] pb-1 text-xs uppercase tracking-[0.15em] transition-opacity duration-[800ms] ease-out hover:opacity-60"
-                >
-                  Book a session
-                </Link>
-                <Link
-                  href="#services"
-                  className="border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60"
-                >
-                  Explore offerings
-                </Link>
-              </div>
+              <Link
+                href="#services"
+                className="relative w-fit pb-1 text-xs uppercase tracking-[0.3em] text-[#E5E0D5] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+              >
+                Explore offerings
+                <span className="absolute bottom-0 left-0 h-px w-full bg-[#E5E0D5]" />
+              </Link>
             </div>
-            <Card className="w-full max-w-sm border border-[#E5E0D5] bg-[#F9F7F2]/90 text-[#2D2D2D] backdrop-blur">
-              <CardHeader className="space-y-3">
-                <CardDescription className="text-[11px] uppercase tracking-[0.15em] text-[#9B8B79]">
-                  Est. 2018
-                </CardDescription>
-                <CardTitle className="font-serif text-2xl tracking-[0.05em]">
-                  A quiet encounter with your deeper rhythm.
-                </CardTitle>
-                <p className="text-sm font-light text-[#2D2D2D]/70">
-                  Private sessions and corporate experiences designed for
-                  restoration, focus, and meaningful connection.
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-4 text-xs uppercase tracking-[0.15em] text-[#2D2D2D]/70">
-                <div className="flex items-center justify-between">
-                  <span>Private 1:1</span>
-                  <span>Online or Brisbane</span>
-                </div>
-                <Separator className="bg-[#E5E0D5]" />
-                <div className="flex items-center justify-between">
-                  <span>Workshops</span>
-                  <span>Teams & retreats</span>
-                </div>
-                <Separator className="bg-[#E5E0D5]" />
-                <div className="flex items-center justify-between">
-                  <span>Corporate wellness</span>
-                  <span>Custom programs</span>
-                </div>
-              </CardContent>
-            </Card>
           </motion.div>
+          <div className="pointer-events-none absolute bottom-10 right-10 text-right text-xs font-serif text-[#E5E0D5]/80">
+            <p>Private 1:1 • Workshops • Corporate Wellness</p>
+            <p className="tracking-[0.08em]">Brisbane · Worldwide</p>
+          </div>
         </section>
 
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
@@ -352,77 +287,76 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section {...fadeUp} className="space-y-8">
-          <div className="flex items-center justify-between">
-            <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
-              Ways to work together
-            </h2>
-            <Badge className="border border-[#E5E0D5] bg-transparent text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
-              High-conversion
-            </Badge>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {offerings.map((item) => (
-              <Card key={item.title} className="flex h-full flex-col border border-[#E5E0D5] bg-transparent">
-                <CardHeader className="space-y-2">
-                  <CardDescription className="text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
+        <motion.section {...fadeUp} className="-mx-6 bg-[#E5E0D5] px-6 py-24 md:py-28">
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-16">
+            <div className="flex flex-col items-center gap-6 text-center">
+              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
+                Ways to work together
+              </h2>
+              <Badge className="border border-transparent bg-transparent text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50">
+                High-conversion
+              </Badge>
+            </div>
+            <div className="grid gap-12 md:grid-cols-3">
+              {offerings.map((item) => (
+                <div key={item.title} className="flex h-full flex-col gap-6 text-left">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50">
                     {item.subtitle}
-                  </CardDescription>
-                  <CardTitle className="text-2xl tracking-[0.05em] text-[#1A2B42]">
+                  </p>
+                  <h3 className="font-serif text-2xl font-light tracking-[0.05em] text-[#1A2B42]">
                     {item.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col justify-between gap-6 text-sm font-light text-[#2D2D2D]/70">
-                  <p>{item.body}</p>
+                  </h3>
+                  <p className="text-sm font-light text-[#2D2D2D]/70">
+                    {item.body}
+                  </p>
                   <Link
                     href="#contact"
-                    className="w-fit border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+                    className="group relative w-fit pb-2 text-xs uppercase tracking-[0.2em] text-[#1A2B42] transition-colors duration-[800ms] ease-out hover:text-[#9B8B79]"
                   >
                     {item.cta}
+                    <span className="absolute bottom-0 left-0 h-px w-full bg-[#1A2B42]/70 transition-all duration-[800ms] ease-out group-hover:bg-[#9B8B79]" />
                   </Link>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         </motion.section>
 
-        <motion.section {...fadeUp} id="testimonials" className="space-y-8">
-          <div className="flex items-center justify-between">
-            <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
-              Client results
-            </h2>
-            <Link
-              href="https://www.google.com/maps/place/Soul+Sound+by+Celine+Mathis"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60">
+        <motion.section {...fadeUp} id="testimonials" className="-mx-6 bg-[#F9F7F2] px-6 py-24 md:py-28">
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-14">
+            <div className="flex flex-col items-center gap-6 text-center">
+              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
+                Client results
+              </h2>
+              <Link
+                href="https://www.google.com/maps/place/Soul+Sound+by+Celine+Mathis"
+                target="_blank"
+                rel="noreferrer"
+                className="group relative w-fit pb-2 text-xs uppercase tracking-[0.2em] text-[#1A2B42] transition-colors duration-[800ms] ease-out hover:text-[#9B8B79]"
+              >
                 View reviews
-              </span>
-            </Link>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <Card key={item.name} className="border border-[#E5E0D5] bg-transparent">
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <Avatar>
-                    <AvatarImage src="/avatar-placeholder.svg" alt={item.name} />
-                    <AvatarFallback>{item.name}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <CardTitle className="text-base text-[#1A2B42]">
+                <span className="absolute bottom-0 left-0 h-px w-full bg-[#1A2B42]/70 transition-all duration-[800ms] ease-out group-hover:bg-[#9B8B79]" />
+              </Link>
+            </div>
+            <div className="grid gap-12 md:grid-cols-3">
+              {testimonials.map((item) => (
+                <div key={item.name} className="flex flex-col gap-4 text-left">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E5E0D5] text-sm font-serif text-[#1A2B42]">
                       {item.name}
-                    </CardTitle>
-                    <CardDescription className="text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
-                      Client testimonial
-                    </CardDescription>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50">
+                        Client testimonial
+                      </p>
+                    </div>
                   </div>
-                </CardHeader>
-                <CardContent className="text-sm font-light text-[#2D2D2D]/70">
-                  {item.quote}
-                </CardContent>
-              </Card>
-            ))}
+                  <p className="font-serif text-lg italic text-[#1A2B42]">
+                    “{item.quote}”
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.section>
 
