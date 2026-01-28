@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -103,136 +104,187 @@ const credentials = [
 ];
 
 export default function Home() {
-  return (
-    <div className="relative min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-100 text-zinc-900">
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-emerald-200/30 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-amber-200/40 blur-3xl" />
+  const [isScrolled, setIsScrolled] = useState(false);
 
-      <header className="sticky top-0 z-50 border-b border-white/60 bg-white/80 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="relative min-h-screen bg-[#F9F7F2] text-[#2D2D2D]">
+      <header
+        className={`fixed top-0 z-50 w-full transition-all duration-[800ms] ease-out ${
+          isScrolled
+            ? "border-b border-[#E5E0D5] bg-[#F9F7F2]/95"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-900 text-white">
+            <div
+              className={`flex h-10 w-10 items-center justify-center rounded-[2px] border transition-colors duration-[800ms] ease-out ${
+                isScrolled
+                  ? "border-[#1A2B42] text-[#1A2B42]"
+                  : "border-[#F9F7F2] text-[#F9F7F2]"
+              }`}
+            >
               SS
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-emerald-700">
+              <p
+                className={`text-[10px] uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out ${
+                  isScrolled ? "text-[#9B8B79]" : "text-[#E5E0D5]"
+                }`}
+              >
                 Soul Sound
               </p>
-              <p className="text-sm font-semibold">Celine Mathis</p>
+              <p
+                className={`text-sm font-medium transition-colors duration-[800ms] ease-out ${
+                  isScrolled ? "text-[#1A2B42]" : "text-[#F9F7F2]"
+                }`}
+              >
+                Celine Mathis
+              </p>
             </div>
           </div>
-          <nav className="hidden items-center gap-6 text-sm font-medium text-zinc-700 md:flex">
-            <Link href="#services">Services</Link>
-            <Link href="#method">Method</Link>
-            <Link href="#testimonials">Results</Link>
-            <Link href="#contact">Contact</Link>
+          <nav
+            className={`hidden items-center gap-6 text-[11px] font-medium uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out md:flex ${
+              isScrolled ? "text-[#2D2D2D]" : "text-[#F9F7F2]"
+            }`}
+          >
+            <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#services">
+              Services
+            </Link>
+            <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#method">
+              Method
+            </Link>
+            <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#testimonials">
+              Results
+            </Link>
+            <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#contact">
+              Contact
+            </Link>
           </nav>
-          <Button asChild className="rounded-full bg-emerald-900 text-white">
+          <Button
+            asChild
+            variant="outline"
+            className={`rounded-[2px] border transition-all duration-[800ms] ease-out ${
+              isScrolled
+                ? "border-[#9B8B79] text-[#9B8B79] hover:bg-[#9B8B79]/10"
+                : "border-[#F9F7F2] text-[#F9F7F2] hover:bg-white/10"
+            }`}
+          >
             <Link href="#contact">Book here</Link>
           </Button>
         </div>
       </header>
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-20 px-6 pb-24 pt-16">
-        <motion.section
-          {...fadeUp}
-          className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
-        >
-          <div className="space-y-6">
-            <Badge className="w-fit bg-emerald-100 text-emerald-800">
-              Sound Healing • Meditation • Corporate Wellness
-            </Badge>
-            <h1 className="font-serif text-5xl leading-tight text-zinc-900 md:text-6xl">
-              Elevate wellbeing, leadership, and performance through soulful
-              sound.
-            </h1>
-            <p className="text-lg text-zinc-600">
-              Soul Sound by Celine Mathis blends sound healing, energy work, and
-              mindful practices to help individuals and teams reset, refocus,
-              and thrive.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button asChild className="rounded-full bg-emerald-900 text-white">
-                <Link href="#contact">Schedule a session</Link>
-              </Button>
-              <Button asChild variant="outline" className="rounded-full">
-                <Link href="#services">Explore offerings</Link>
-              </Button>
-            </div>
-            <div className="flex flex-wrap gap-6 text-sm text-zinc-500">
-              <div>
-                <p className="text-xl font-semibold text-zinc-900">20+ yrs</p>
-                <p>Corporate experience</p>
-              </div>
-              <div>
-                <p className="text-xl font-semibold text-zinc-900">25 yrs</p>
-                <p>Classical music training</p>
-              </div>
-              <div>
-                <p className="text-xl font-semibold text-zinc-900">Global</p>
-                <p>Remote & in-person sessions</p>
-              </div>
-            </div>
+      <main className="flex flex-col gap-24 pb-24">
+        <section className="relative min-h-[100vh] overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center filter saturate-90 sepia-[0.12]"
+            style={{
+              backgroundImage:
+                "url(https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2400&auto=format&fit=crop)",
+            }}
+          >
+            <div className="absolute inset-0 bg-[#1A2B42]/65 mix-blend-multiply" />
           </div>
-          <Card className="overflow-hidden border-none bg-white shadow-xl">
-            <CardHeader className="space-y-4">
-              <CardDescription className="uppercase tracking-[0.3em] text-emerald-700">
-                Est. 2018
-              </CardDescription>
-              <CardTitle className="font-serif text-3xl">
-                A modern sanctuary for deep restoration.
-              </CardTitle>
-              <p className="text-sm text-zinc-500">
-                Sessions are designed to unlock calm, clarity, and energized
-                presence for your next chapter.
+          <motion.div
+            {...fadeUp}
+            className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-24 pt-40 text-[#F9F7F2] lg:flex-row lg:items-end lg:justify-between"
+          >
+            <div className="max-w-2xl space-y-6">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-[#E5E0D5]">
+                Architectural Serenity
               </p>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="rounded-3xl bg-emerald-50 p-6 text-sm text-emerald-900">
-                “Celine blends intuitive guidance with professional excellence.
-                Every session feels deeply grounded and purposeful.”
+              <h1 className="font-serif text-5xl leading-tight tracking-[0.05em] md:text-6xl">
+                Your practice is a sanctuary of stillness, resonance, and
+                unfolding.
+              </h1>
+              <p className="text-lg font-light text-[#E5E0D5]">
+                I guide you into the architecture of the body through sound,
+                movement, and breath so you can return to clarity and presence.
+              </p>
+              <div className="flex flex-wrap gap-6 text-sm font-light">
+                <Link
+                  href="#contact"
+                  className="border-b border-[#F9F7F2] pb-1 text-xs uppercase tracking-[0.15em] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+                >
+                  Book a session
+                </Link>
+                <Link
+                  href="#services"
+                  className="border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+                >
+                  Explore offerings
+                </Link>
               </div>
-              <div className="grid gap-3 text-sm text-zinc-500">
+            </div>
+            <Card className="w-full max-w-sm border border-[#E5E0D5] bg-[#F9F7F2]/90 text-[#2D2D2D] backdrop-blur">
+              <CardHeader className="space-y-3">
+                <CardDescription className="text-[11px] uppercase tracking-[0.15em] text-[#9B8B79]">
+                  Est. 2018
+                </CardDescription>
+                <CardTitle className="font-serif text-2xl tracking-[0.05em]">
+                  A quiet encounter with your deeper rhythm.
+                </CardTitle>
+                <p className="text-sm font-light text-[#2D2D2D]/70">
+                  Private sessions and corporate experiences designed for
+                  restoration, focus, and meaningful connection.
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-4 text-xs uppercase tracking-[0.15em] text-[#2D2D2D]/70">
                 <div className="flex items-center justify-between">
                   <span>Private 1:1</span>
                   <span>Online or Brisbane</span>
                 </div>
-                <Separator />
+                <Separator className="bg-[#E5E0D5]" />
                 <div className="flex items-center justify-between">
                   <span>Workshops</span>
                   <span>Teams & retreats</span>
                 </div>
-                <Separator />
+                <Separator className="bg-[#E5E0D5]" />
                 <div className="flex items-center justify-between">
                   <span>Corporate wellness</span>
                   <span>Custom programs</span>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.section>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </section>
+
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
 
         <motion.section {...fadeUp} id="services" className="space-y-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-emerald-700">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-[#9B8B79]">
                 Holistic modalities
               </p>
-              <h2 className="font-serif text-4xl">
-                Experiences that transform mind, body, and energy.
+              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
+                Experiences that restore stillness and resonance.
               </h2>
             </div>
-            <Button asChild variant="outline" className="rounded-full">
-              <Link href="#contact">Download offerings</Link>
-            </Button>
+            <Link
+              href="#contact"
+              className="border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+            >
+              Download offerings
+            </Link>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {modalities.map((item) => (
-              <Card key={item.title} className="border-emerald-100/60">
+              <Card key={item.title} className="border border-[#E5E0D5] bg-transparent">
                 <CardHeader>
-                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                  <CardTitle className="text-xl tracking-[0.05em] text-[#1A2B42]">
+                    {item.title}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-zinc-600">
+                <CardContent className="text-sm font-light text-[#2D2D2D]/70">
                   {item.body}
                 </CardContent>
               </Card>
@@ -240,40 +292,46 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section {...fadeUp} id="method" className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <Card className="border-none bg-emerald-950 text-white">
+        <motion.section
+          {...fadeUp}
+          id="method"
+          className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"
+        >
+          <Card className="border border-[#1A2B42] bg-[#1A2B42] text-[#F9F7F2]">
             <CardHeader>
-              <CardDescription className="text-emerald-200">
+              <CardDescription className="text-[11px] uppercase tracking-[0.15em] text-[#E5E0D5]">
                 Working with me
               </CardDescription>
-              <CardTitle className="font-serif text-3xl">
-                A grounded, intuitive approach with measurable outcomes.
+              <CardTitle className="font-serif text-3xl tracking-[0.05em]">
+                I guide you with structure, intuition, and deep presence.
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6 text-sm text-emerald-100">
+            <CardContent className="space-y-6 text-sm font-light text-[#F9F7F2]/80">
               <p>
-                My sessions integrate education, spirituality, and practical
-                tools to support your daily life. We work with transparency,
-                accountability, and clear objectives.
+                I integrate education, spirituality, and practical tools so you
+                can inhabit meaningful change in your daily life.
               </p>
               <ul className="space-y-3">
-                <li>Clarify your goals and desired outcomes.</li>
-                <li>Reset your nervous system and energy field.</li>
-                <li>Implement rituals that sustain change.</li>
+                <li>Clarify the intention and architecture of your goals.</li>
+                <li>Restore your nervous system to stillness and clarity.</li>
+                <li>Design rituals that keep the unfolding alive.</li>
               </ul>
-              <Button asChild className="rounded-full bg-white text-emerald-900">
-                <Link href="#contact">Start your journey</Link>
-              </Button>
+              <Link
+                href="#contact"
+                className="w-fit border-b border-[#F9F7F2] pb-1 text-xs uppercase tracking-[0.15em] text-[#F9F7F2] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+              >
+                Start your journey
+              </Link>
             </CardContent>
           </Card>
           <div className="space-y-6">
-            <h3 className="font-serif text-3xl">
+            <h3 className="font-serif text-3xl tracking-[0.05em] text-[#1A2B42]">
               Qualifications & experience
             </h3>
             <div className="grid gap-4 sm:grid-cols-2">
               {credentials.map((item) => (
-                <Card key={item} className="border-emerald-100/60">
-                  <CardContent className="pt-6 text-sm text-zinc-600">
+                <Card key={item} className="border border-[#E5E0D5] bg-transparent">
+                  <CardContent className="pt-6 text-sm font-light text-[#2D2D2D]/70">
                     {item}
                   </CardContent>
                 </Card>
@@ -284,23 +342,32 @@ export default function Home() {
 
         <motion.section {...fadeUp} className="space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="font-serif text-4xl">Ways to work together</h2>
-            <Badge className="bg-amber-100 text-amber-900">High-conversion</Badge>
+            <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
+              Ways to work together
+            </h2>
+            <Badge className="border border-[#E5E0D5] bg-transparent text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
+              High-conversion
+            </Badge>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {offerings.map((item) => (
-              <Card key={item.title} className="flex h-full flex-col">
+              <Card key={item.title} className="flex h-full flex-col border border-[#E5E0D5] bg-transparent">
                 <CardHeader className="space-y-2">
-                  <CardDescription className="uppercase tracking-[0.3em] text-emerald-700">
+                  <CardDescription className="text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
                     {item.subtitle}
                   </CardDescription>
-                  <CardTitle className="text-2xl">{item.title}</CardTitle>
+                  <CardTitle className="text-2xl tracking-[0.05em] text-[#1A2B42]">
+                    {item.title}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col justify-between gap-6 text-sm text-zinc-600">
+                <CardContent className="flex flex-1 flex-col justify-between gap-6 text-sm font-light text-[#2D2D2D]/70">
                   <p>{item.body}</p>
-                  <Button asChild variant="outline" className="w-fit rounded-full">
-                    <Link href="#contact">{item.cta}</Link>
-                  </Button>
+                  <Link
+                    href="#contact"
+                    className="w-fit border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60"
+                  >
+                    {item.cta}
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -309,31 +376,37 @@ export default function Home() {
 
         <motion.section {...fadeUp} id="testimonials" className="space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="font-serif text-4xl">Client results</h2>
+            <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
+              Client results
+            </h2>
             <Link
               href="https://www.google.com/maps/place/Soul+Sound+by+Celine+Mathis"
-            target="_blank"
+              target="_blank"
               rel="noreferrer"
             >
-              <Button variant="outline" className="rounded-full">
+              <span className="border-b border-[#9B8B79] pb-1 text-xs uppercase tracking-[0.15em] text-[#9B8B79] transition-opacity duration-[800ms] ease-out hover:opacity-60">
                 View reviews
-              </Button>
+              </span>
             </Link>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((item) => (
-              <Card key={item.name}>
+              <Card key={item.name} className="border border-[#E5E0D5] bg-transparent">
                 <CardHeader className="flex flex-row items-center gap-4">
                   <Avatar>
                     <AvatarImage src="/avatar-placeholder.svg" alt={item.name} />
                     <AvatarFallback>{item.name}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <CardTitle className="text-base">{item.name}</CardTitle>
-                    <CardDescription>Client testimonial</CardDescription>
+                    <CardTitle className="text-base text-[#1A2B42]">
+                      {item.name}
+                    </CardTitle>
+                    <CardDescription className="text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
+                      Client testimonial
+                    </CardDescription>
                   </div>
                 </CardHeader>
-                <CardContent className="text-sm text-zinc-600">
+                <CardContent className="text-sm font-light text-[#2D2D2D]/70">
                   {item.quote}
                 </CardContent>
               </Card>
@@ -344,57 +417,83 @@ export default function Home() {
         <motion.section
           {...fadeUp}
           id="contact"
-          className="grid gap-10 rounded-[32px] bg-emerald-950 px-8 py-12 text-white lg:grid-cols-[1.1fr_0.9fr]"
+          className="grid gap-10 border border-[#1A2B42] bg-[#1A2B42] px-8 py-16 text-[#F9F7F2] lg:grid-cols-[1.1fr_0.9fr]"
         >
           <div className="space-y-4">
-            <Badge className="w-fit bg-emerald-200 text-emerald-900">
+            <Badge className="w-fit border border-[#E5E0D5] bg-transparent text-[10px] uppercase tracking-[0.15em] text-[#E5E0D5]">
               Let’s collaborate
             </Badge>
-            <h2 className="font-serif text-4xl">
+            <h2 className="font-serif text-4xl tracking-[0.05em]">
               Ready to build a calmer, stronger, higher-performing team?
             </h2>
-            <p className="text-emerald-100">
-              Share your goals and I’ll craft a custom wellness experience for
-              your people. Sessions are available in Brisbane or worldwide.
+            <p className="font-light text-[#E5E0D5]">
+              Share your goals and I will design a bespoke experience that
+              brings clarity, resonance, and meaningful connection.
             </p>
-            <div className="space-y-2 text-sm text-emerald-200">
+            <div className="space-y-2 text-sm font-light text-[#E5E0D5]">
               <p>• Corporate wellness activations</p>
               <p>• Retreat facilitation & partnerships</p>
               <p>• Private 1:1 healing sessions</p>
             </div>
-        </div>
-          <Card className="border-none bg-white text-zinc-900">
+          </div>
+          <Card className="border border-[#E5E0D5] bg-[#F9F7F2] text-[#2D2D2D]">
             <CardHeader>
-              <CardTitle className="text-2xl">Request availability</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-2xl tracking-[0.05em] text-[#1A2B42]">
+                Request availability
+              </CardTitle>
+              <CardDescription className="text-sm font-light text-[#2D2D2D]/70">
                 Share your preferred dates and focus area.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Input placeholder="Full name" />
-              <Input placeholder="Work email" />
-              <Textarea placeholder="What would you like to create together?" />
-              <Button className="w-full rounded-full bg-emerald-900 text-white">
+              <Input className="rounded-[2px]" placeholder="Full name" />
+              <Input className="rounded-[2px]" placeholder="Work email" />
+              <Textarea
+                className="rounded-[2px]"
+                placeholder="What would you like to create together?"
+              />
+              <Button
+                variant="outline"
+                className="w-full rounded-[2px] border-[#9B8B79] text-[#9B8B79] transition-all duration-[800ms] ease-out hover:bg-[#9B8B79]/10"
+              >
                 Submit inquiry
               </Button>
             </CardContent>
           </Card>
         </motion.section>
+        </div>
       </main>
 
-      <footer className="border-t border-emerald-100 bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2 text-sm text-zinc-500">
-            <p className="text-base font-semibold text-zinc-900">
+      <footer className="border-t border-[#E5E0D5] bg-[#1A2B42] text-[#F9F7F2]">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-2 text-sm font-light text-[#E5E0D5]">
+            <p className="text-base font-medium text-[#F9F7F2]">
               Soul Sound by Celine Mathis
             </p>
             <p>Brisbane • Global online sessions</p>
           </div>
-          <div className="flex flex-wrap gap-4 text-sm text-zinc-500">
-            <Link href="#services">Services</Link>
-            <Link href="#method">Method</Link>
-            <Link href="#testimonials">Testimonials</Link>
-            <Link href="#contact">Contact</Link>
+          <div className="flex flex-col gap-4 md:items-end">
+            <div className="flex flex-wrap gap-4 text-[11px] uppercase tracking-[0.15em] text-[#E5E0D5]">
+              <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#services">
+                Services
+              </Link>
+              <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#method">
+                Method
+              </Link>
+              <Link className="transition-opacity duration-[800ms] ease-out hover:opacity-60" href="#testimonials">
+                Testimonials
+              </Link>
+            </div>
+            <div className="flex w-full items-center gap-3 border-b border-[#E5E0D5] pb-2 text-sm text-[#E5E0D5]/80 md:w-72">
+              <input
+                className="w-full bg-transparent text-sm font-light outline-none placeholder:text-[#E5E0D5]/60"
+                placeholder="Subscribe to the newsletter"
+                type="email"
+              />
+              <span className="text-[10px] uppercase tracking-[0.15em] text-[#9B8B79]">
+                Join
+              </span>
+            </div>
           </div>
         </div>
       </footer>
