@@ -293,9 +293,6 @@ export default function Home() {
               <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
                 Ways to work together
               </h2>
-              <Badge className="border border-transparent bg-transparent text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50">
-                High-conversion
-              </Badge>
             </div>
             <div className="grid gap-12 md:grid-cols-3">
               {offerings.map((item) => (
