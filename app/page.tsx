@@ -156,8 +156,8 @@ export default function Home() {
                 }`}
               >
                 Celine Mathis
-              </p>
-            </div>
+          </p>
+        </div>
           </div>
           <nav
             className={`hidden items-center gap-6 text-[11px] font-light uppercase tracking-[0.15em] transition-colors duration-[800ms] ease-out md:flex ${
@@ -280,15 +280,6 @@ export default function Home() {
                 </p>
               </div>
             ))}
-          </div>
-          <div className="flex justify-center">
-            <Link
-              href="#contact"
-              className="group relative pb-2 text-xs uppercase tracking-[0.2em] text-[#1A2B42] transition-colors duration-[800ms] ease-out hover:text-[#9B8B79]"
-            >
-              Download offerings
-              <span className="absolute bottom-0 left-0 h-px w-full bg-[#1A2B42]/70 transition-all duration-[800ms] ease-out group-hover:bg-[#9B8B79]" />
-            </Link>
           </div>
         </motion.section>
 
