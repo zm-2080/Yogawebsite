@@ -259,14 +259,14 @@ export default function Home() {
 
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6">
 
-        <motion.section {...fadeUp} id="services" className="space-y-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
+        <motion.section {...fadeUp} id="services" className="space-y-16">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-[#9B8B79]">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/60 font-medium">
                 Holistic modalities
               </p>
-              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
-                Experiences that restore stillness and resonance.
+              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42] md:text-5xl">
+                Experiences curated like a quiet, restorative menu.
               </h2>
             </div>
             <Link
@@ -276,15 +276,24 @@ export default function Home() {
               Download offerings
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {modalities.map((item) => (
-              <Card key={item.title} className="border border-[#E5E0D5] bg-transparent">
+          <div className="grid gap-12 md:grid-cols-3">
+            {modalities.map((item, index) => (
+              <Card
+                key={item.title}
+                className={`group border-0 bg-[#E5E0D5]/70 p-12 transition-all duration-[800ms] ease-out hover:bg-[#F9F7F2] ${
+                  index === 0
+                    ? "md:col-span-2"
+                    : index === 3
+                      ? "md:col-span-2"
+                      : "md:col-span-1"
+                }`}
+              >
                 <CardHeader>
-                  <CardTitle className="text-xl tracking-[0.05em] text-[#1A2B42]">
+                  <CardTitle className="font-serif text-2xl font-light tracking-[0.05em] text-[#1A2B42] transition-colors duration-[800ms] ease-out group-hover:text-[#9B8B79]">
                     {item.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm font-light text-[#2D2D2D]/70">
+                <CardContent className="text-sm font-light text-[#2D2D2D]/70 transition-colors duration-[800ms] ease-out group-hover:text-[#1A2B42]">
                   {item.body}
                 </CardContent>
               </Card>
@@ -295,18 +304,18 @@ export default function Home() {
         <motion.section
           {...fadeUp}
           id="method"
-          className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"
+          className="mt-20 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"
         >
           <Card className="border border-[#1A2B42] bg-[#1A2B42] text-[#F9F7F2]">
-            <CardHeader>
-              <CardDescription className="text-[11px] uppercase tracking-[0.15em] text-[#E5E0D5]">
+            <CardHeader className="px-16 pt-16">
+              <CardDescription className="text-[10px] uppercase tracking-[0.2em] text-[#E5E0D5]">
                 Working with me
               </CardDescription>
-              <CardTitle className="font-serif text-3xl tracking-[0.05em]">
+              <CardTitle className="font-serif text-3xl font-light tracking-[0.06em]">
                 I guide you with structure, intuition, and deep presence.
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6 text-sm font-light text-[#F9F7F2]/80">
+            <CardContent className="space-y-6 px-16 pb-16 text-sm font-light text-[#F9F7F2]/80">
               <p>
                 I integrate education, spirituality, and practical tools so you
                 can inhabit meaningful change in your daily life.
@@ -324,17 +333,20 @@ export default function Home() {
               </Link>
             </CardContent>
           </Card>
-          <div className="space-y-6">
+          <div className="space-y-10 lg:mt-12">
             <h3 className="font-serif text-3xl tracking-[0.05em] text-[#1A2B42]">
               Qualifications & experience
             </h3>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {credentials.map((item) => (
-                <Card key={item} className="border border-[#E5E0D5] bg-transparent">
-                  <CardContent className="pt-6 text-sm font-light text-[#2D2D2D]/70">
+            <div className="flex flex-col gap-8">
+              {credentials.map((item, index) => (
+                <div key={item} className="space-y-6">
+                  {index > 0 ? (
+                    <div className="border-t border-[#E5E0D5]" />
+                  ) : null}
+                  <p className="text-sm font-light text-[#2D2D2D]/70 transition-colors duration-[800ms] ease-out hover:text-[#9B8B79]">
                     {item}
-                  </CardContent>
-                </Card>
+                  </p>
+                </div>
               ))}
             </div>
           </div>
