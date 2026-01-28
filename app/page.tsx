@@ -311,31 +311,28 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section {...fadeUp} className="-mx-6 bg-[#E5E0D5] px-6 py-24 md:py-28">
-          <div className="mx-auto flex w-full max-w-6xl flex-col gap-16">
+        <motion.section {...fadeUp} className="py-24 md:py-32">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-20 px-6">
             <div className="flex flex-col items-center gap-6 text-center">
-              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42]">
+              <h2 className="font-serif text-4xl tracking-[0.05em] text-[#1A2B42] md:text-5xl">
                 Ways to work together
               </h2>
             </div>
-            <div className="grid gap-12 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3 md:gap-6">
               {offerings.map((item) => (
-                <div key={item.title} className="flex h-full flex-col gap-6 text-left">
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-[#F9F7F2]">
+                <div key={item.title} className="flex h-full flex-col gap-8 text-left">
+                  <div className="aspect-[3/4] w-full overflow-hidden">
                     <div
                       className="h-full w-full bg-cover bg-center filter saturate-90 sepia-[0.12] transition-transform duration-[800ms] ease-out hover:scale-[1.02]"
                       style={{ backgroundImage: `url(${item.image})` }}
                     >
-                      <div className="h-full w-full bg-black/10" />
+                      <div className="h-full w-full bg-black/5" />
                     </div>
                   </div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#2D2D2D]/50">
-                    {item.subtitle}
-                  </p>
                   <h3 className="font-serif text-2xl font-light tracking-[0.05em] text-[#1A2B42]">
                     {item.title}
                   </h3>
-                  <p className="text-sm font-light text-[#2D2D2D]/70">
+                  <p className="text-sm font-light leading-relaxed text-[#2D2D2D]/70 text-justify">
                     {item.body}
                   </p>
                   <Link
